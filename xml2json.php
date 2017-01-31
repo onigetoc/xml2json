@@ -26,6 +26,7 @@ $feed_url = 'http://news.yahoo.com/rss';
 
   $xmlNode = simplexml_load_file($feed_url);
   $arrayData = xmlToArray($xmlNode);
+  echo json_encode($arrayData);
   //echo $_GET['callback']. '(' . json_encode($arrayData) . ')';  // jsonP callback
 
 
