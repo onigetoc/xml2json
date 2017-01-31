@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Create plain PHP associative array from XML.
  *
@@ -14,7 +13,21 @@
  * @link http://outlandishideas.co.uk/blog/2012/08/xml-to-json/ More info
  * @author Tamlyn Rhodes <http://tamlyn.org>
  * @license http://creativecommons.org/publicdomain/mark/1.0/ Public Domain
+ * https://github.com/tamlyn/xml2json/blob/master/xml2json.php
  */
+header('Content-Type: application/json; charset=utf-8');
+// Obtain Feed Url From POST
+$feed_url = $_GET['url'];
+//$feed_url = 'http://softplug.com/feed';
+
+if(!$_GET['url'])
+$feed_url = 'http://news.yahoo.com/rss';
+//$feed_url = 'http://'.$feed_url;
+
+  $xmlNode = simplexml_load_file($feed_url);
+  $arrayData = xmlToArray($xmlNode);
+  //echo $_GET['callback']. '(' . json_encode($arrayData) . ')';  // jsonP callback
+
 
 function xmlToArray($xml, $options = array()) {
     $defaults = array(
